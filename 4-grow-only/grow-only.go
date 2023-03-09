@@ -21,7 +21,7 @@ func main() {
 		r := b["delta"].(float64)
 		received := int(r)
 		ctx := context.TODO()
-		curr, err := kv.ReadInt(ctx, "add")
+		curr, err := kv.ReadInt(ctx, n.ID())
 		shouldCreate := false
 		if err != nil {
 			// does not exist
@@ -44,7 +44,7 @@ func main() {
 		}
 
 		ctx := context.TODO()
-		r, _ := kv.ReadInt(ctx, "add")
+		r, _ := kv.ReadInt(ctx, n.ID())
 		b["value"] = r
 		b["type"] = "read_ok"
 
