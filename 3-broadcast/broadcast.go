@@ -8,7 +8,7 @@ import (
 
 func main() {
 	n := maelstrom.NewNode()
-	var msgs []int
+	var msgs []float64
 	n.Handle("broadcast", func(msg maelstrom.Message) error {
 		var b map[string]any
 		err := json.Unmarshal(msg.Body, &b)
@@ -16,7 +16,7 @@ func main() {
 			return err
 		}
 
-		i := b["message"].(int)
+		i := b["message"].(float64)
 		msgs = append(msgs, i)
 
 		b["type"] = "broadcast_ok"
